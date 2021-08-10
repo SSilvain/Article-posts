@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import Input from "./Components/UI/Input/Input";
 import './App.css';
+import { useState } from "react";
 
 function App() {
+  const [post, setPost] = useState({ title: "", body: "" })
+  
+  const onChangeTitle = (e) => {
+    setPost({...post, title: e.target.value})
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <>
+          {/* <input type="text" onChange={onChangeTitle} value={post.title} /> */}
+          <Input
+              onChange={onChangeTitle}
+              value={post.title}
+              placeholder="title"
+          />
+          <Input value={post.body} placeholder="body" />
+      </>
   );
 }
 
