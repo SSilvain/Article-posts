@@ -1,0 +1,43 @@
+.posts{
+	padding: 15px;
+	font-size: 18px;
+}
+.post{
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 20px;
+}
+.titleWrapper{
+	display: flex;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.titleLeft{
+	display: flex;
+}
+.number{
+	padding: 0 5px;
+	font-weight: bold;
+	font-size: 20px;
+}
+.title{
+	font-weight: bold;
+	font-size: 20px;
+}
+.button{
+	border: 1px solid #ccc;
+	background-color: #eee;
+	border-radius: 5px;
+	padding: 5px 10px;
+	transition: all .2s;
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: #333;
+			color: #fff;
+		}
+	}
+}

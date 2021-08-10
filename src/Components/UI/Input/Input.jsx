@@ -1,10 +1,11 @@
-const Input = ({ value, placeholder }) => {
+import s from "./Input.modul.scss"
+
+const Input = ({ placeholder, ...props }) => {
 	return (
 		
-		<input type="text" value={value} placeholder={`type text ${placeholder}`} />
+		<input className={s.input} type="text" {...props} placeholder={`type text ${placeholder}`} />
 		
-
 	)
 }
 
-export default Input
+export default Input;
