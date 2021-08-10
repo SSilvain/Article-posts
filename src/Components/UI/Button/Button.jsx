@@ -1,6 +1,8 @@
-const Button = ({ children, ...props }) => {
+import s from "./Button.module.scss"
+
+const Button = ({ addPost, children, ...props }) => {
 	return (
-		<button {...props}>{children}</button>
+		<button onClick={addPost} className={s.button} {...props}>{children}</button>
 	)
 }
 

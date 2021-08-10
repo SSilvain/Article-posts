@@ -2,7 +2,7 @@ import s from "./Post.module.scss";
 
 const Post = ({title, body, id}) => {
 	return (
-		<div className={s.posts} id={id}>
+		<div className={s.posts} key={id}>
 			<div className={s.post}>
 				<div className={s.titleWrapper}>
 					<div className={s.titleLeft}>

@@ -1,10 +1,11 @@
-import s from "./Input.modul.scss"
+import s from "./Input.module.scss"
 
 const Input = ({ placeholder, ...props }) => {
 	return (
-		
-		<input className={s.input} type="text" {...props} placeholder={`type text ${placeholder}`} />
-		
+		<>
+			<input className={s.inputText} type="text" {...props} placeholder={`type text ${placeholder}`} />
+		</>
+
 	)
 }
 

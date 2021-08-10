@@ -1,0 +1,21 @@
+.button{
+	color: #fff;
+	border: 1px solid #ccc;
+	padding: 5px 20px;	
+	background-color: #777;
+	border-radius: 5px;
+	margin-right: 10px;
+	display: inline-block;
+	text-transform: uppercase;
+	transition: all .2s;
+	height: 50px;
+	display: inline-flex;
+	align-items: center;
+	
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: #fff;
+			color: #777;
+		}
+	}
+}
