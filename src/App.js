@@ -2,7 +2,7 @@ import Input from "./Components/UI/Input/Input";
 import s from "./App.module.scss";
 import { useState } from "react";
 import Button from "./Components/UI/Button/Button";
-import Post from "./Components/Post/Post";
+import PostsList from "./Components/PostsList/PostsList";
 
 function App() {
   let posts = [{ title: "Hello", body: "this is big post", id: 0 }];
@@ -16,11 +16,7 @@ function App() {
         setPost({ ...post, body: e.target.value });
     };
 
-    const createPosts = () => {
-        return postsState.map((p) => {
-            return <Post title={p.title} id={Date.now()} body={p.body} />;
-        });
-    };
+
   
   const addPost = (e) => {
     e.preventDefault();
@@ -29,7 +25,7 @@ function App() {
   }
     return (
         <div>
-            <div className={s.ui}>
+            <form className={s.ui}>
                 <Input
                     onChange={onChangeTitle}
                     value={post.title}
@@ -41,9 +37,9 @@ function App() {
                     placeholder="body"
                 />
                 <Button addPost={addPost}>Send Post</Button>
-            </div>
+            </form>
 
-            {createPosts()}
+            <PostsList postsState={postsState} />
         </div>
     );
 }
