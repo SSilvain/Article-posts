@@ -1,12 +1,12 @@
 import s from "./Post.module.scss";
 
-const Post = ({title, body, id}) => {
+const Post = ({ title, body, id, number}) => {
 	return (
 		<div className={s.posts} key={id}>
 			<div className={s.post}>
 				<div className={s.titleWrapper}>
 					<div className={s.titleLeft}>
-						<div className={s.number}>1.</div>
+						<div className={s.number}>{number}.</div>
 						<h2 className={s.title}>{title}</h2>
 					</div>
 					<div className={s.titleRight}>

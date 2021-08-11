@@ -5,8 +5,8 @@ import Button from "./Components/UI/Button/Button";
 import PostsList from "./Components/PostsList/PostsList";
 
 function App() {
-  let posts = [{ title: "Hello", body: "this is big post", id: 0 }];
-  const [postsState, setPostsState] = useState (posts) ;
+    let posts = [{ title: "Hello", body: "this is big post", id: 0 }];
+    const [postsState, setPostsState] = useState(posts);
     const [post, setPost] = useState({ title: "", body: "" });
 
     const onChangeTitle = (e) => {
@@ -16,13 +16,11 @@ function App() {
         setPost({ ...post, body: e.target.value });
     };
 
-
-  
-  const addPost = (e) => {
-    e.preventDefault();
-    setPostsState([...postsState, post]);
-    setPost({ title: '', body: ''});
-  }
+    const addPost = (e) => {
+        e.preventDefault();
+        setPostsState([...postsState, post]);
+        setPost({ title: "", body: "" });
+    };
     return (
         <div>
             <form className={s.ui}>
@@ -39,7 +37,7 @@ function App() {
                 <Button addPost={addPost}>Send Post</Button>
             </form>
 
-            <PostsList postsState={postsState} />
+            <PostsList postsState={postsState.reverse()} />
         </div>
     );
 }
