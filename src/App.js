@@ -1,6 +1,6 @@
-import Input from "./Components/UI/Input/Input";
+import UIInput from "./Components/UI/UIInput/UIInput";
 import s from "./App.module.scss";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Button from "./Components/UI/Button/Button";
 import PostsList from "./Components/PostsList/PostsList";
 
@@ -21,15 +21,22 @@ function App() {
         setPostsState([...postsState, post]);
         setPost({ title: "", body: "" });
     };
+    
+    const inputRef = useRef();
+    const inputRefConsole = (e) => {
+        console.log(e.target.value)
+    }
+    
     return (
         <div>
+            <input onChange={inputRefConsole} ref={inputRef} type="text" />
             <form className={s.ui}>
-                <Input
+                <UIInput
                     onChange={onChangeTitle}
                     value={post.title}
                     placeholder="title"
                 />
-                <Input
+                <UIInput
                     onChange={onChangeBody}
                     value={post.body}
                     placeholder="body"

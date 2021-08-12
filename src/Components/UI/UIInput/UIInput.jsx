@@ -1,6 +1,6 @@
-import s from "./Input.module.scss"
+import s from "./UIInput.module.scss"
 
-const Input = ({ placeholder, ...props }) => {
+const UIInput = ({ placeholder, ...props }) => {
 	return (
 		<>
 			<input className={s.inputText} type="text" {...props} placeholder={`type text ${placeholder}`} />
@@ -9,4 +9,4 @@ const Input = ({ placeholder, ...props }) => {
 	)
 }
 
-export default Input;
+export default UIInput;
