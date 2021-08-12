@@ -1,4 +1,4 @@
-import s from "./Button.module.scss"
+import s from "./UIButton.module.scss"
 
 const Button = ({ addPost, children, ...props }) => {
 	return (

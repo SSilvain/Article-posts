@@ -1,13 +1,13 @@
 import UIInput from "./Components/UI/UIInput/UIInput";
 import s from "./App.module.scss";
-import { useRef, useState } from "react";
-import Button from "./Components/UI/Button/Button";
+import {  useState } from "react";
+import Button from "./Components/UI/UIButton/UIButton";
 import PostsList from "./Components/PostsList/PostsList";
+import PostForm from "./Components/PostForm/PostForm";
 
 function App() {
-    let posts = [{ title: "Hello", body: "this is big post", id: 0 }];
-    const [postsState, setPostsState] = useState(posts);
-    const [post, setPost] = useState({ title: "", body: "" });
+    const [postsState, setPostsState] = useState([]);
+    let [post, setPost] = useState({ title: "", body: "" });
 
     const onChangeTitle = (e) => {
         setPost({ ...post, title: e.target.value });
@@ -18,33 +18,23 @@ function App() {
 
     const addPost = (e) => {
         e.preventDefault();
+        setPost({ ...post, id: Date.now() })
         setPostsState([...postsState, post]);
         setPost({ title: "", body: "" });
     };
     
-    const inputRef = useRef();
-    const inputRefConsole = (e) => {
-        console.log(e.target.value)
-    }
-    
     return (
         <div>
-            <input onChange={inputRefConsole} ref={inputRef} type="text" />
-            <form className={s.ui}>
-                <UIInput
-                    onChange={onChangeTitle}
-                    value={post.title}
-                    placeholder="title"
-                />
-                <UIInput
-                    onChange={onChangeBody}
-                    value={post.body}
-                    placeholder="body"
-                />
-                <Button addPost={addPost}>Send Post</Button>
-            </form>
+            <PostForm
+                post={post}
+                onChangeTitle={onChangeTitle}
+                onChangeBody={onChangeBody}
+                addPost={addPost}
+            />
 
-            <PostsList postsState={postsState.reverse()} />
+            <PostsList postsState={postsState} title="Posts about traveling" />
+
+            {true && <div>Hello, and and</div>}
         </div>
     );
 }
