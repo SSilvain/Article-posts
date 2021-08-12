@@ -1,8 +1,23 @@
+import { useState } from "react";
 import UIButton from "../UI/UIButton/UIButton";
 import UIInput from "../UI/UIInput/UIInput";
 import s from "./PostForm.module.scss";
 
-const PostForm = ({ post, onChangeTitle, onChangeBody, addPost}) => {
+const PostForm = ({ addPost }) => {
+
+	let [post, setPost] = useState({ title: "", body: "" });
+	const onChangeTitle = (e) => {
+		setPost({ ...post, title: e.target.value });
+	};
+	const onChangeBody = (e) => {
+		setPost({ ...post, body: e.target.value });
+	};
+	const createPost = (e) => {
+		e.preventDefault();
+		setPost({ ...post, id: Date.now() });
+		addPost(post);
+		setPost({ title: "", body: "" });
+	};
 	return (
 		<form className={s.ui}>
 			<UIInput
@@ -15,7 +30,7 @@ const PostForm = ({ post, onChangeTitle, onChangeBody, addPost}) => {
 				value={post.body}
 				placeholder="body"
 			/>
-			<UIButton addPost={addPost}>Send Post</UIButton>
+			<UIButton createPost={createPost}>Send Post</UIButton>
 		</form>
 	)
 }

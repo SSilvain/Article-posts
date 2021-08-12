@@ -1,8 +1,8 @@
 import s from "./UIButton.module.scss"
 
-const Button = ({ addPost, children, ...props }) => {
+const Button = ({ createPost, children, ...props }) => {
 	return (
-		<button onClick={addPost} className={s.button} {...props}>{children}</button>
+		<button onClick={createPost} className={s.button} {...props}>{children}</button>
 	)
 }
 

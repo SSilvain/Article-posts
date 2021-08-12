@@ -2,7 +2,7 @@ import { memo } from "react";
 import Post from "./Post/Post";
 import s from "./PostsList.module.scss"
 
-const PostsList = memo(({ postsState, title }) => {
+const PostsList = ({ postsState, title }) => {
 	const posts = postsState.map((p, index) => {
 		return <Post title={p.title} number={index} key={p.id} body={p.body} />
 	})
@@ -13,6 +13,6 @@ const PostsList = memo(({ postsState, title }) => {
 			
 			{posts}
 		</div>)
-})
+}
 
 export default PostsList;
