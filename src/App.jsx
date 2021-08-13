@@ -18,7 +18,7 @@ function App() {
 
 	const onChangeSortingValue = (value) => {
 		setSortingValue(value);
-		setPostsState([...postsState].sort((a, b) => a[value].localeCompare(b[value])))
+		setPostsState([...postsState].sort((a, b) => (a[value]+"").localeCompare((b[value]+""))))
 
 	}
 	const removePost = (key) => {
@@ -39,6 +39,7 @@ function App() {
 				options={[
 					{ value: "title", name: "title" },
 					{ value: "body", name: "body" },
+					{value: "id", name: "id"}
 				]}
 			/>
 
