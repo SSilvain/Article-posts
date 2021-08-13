@@ -2,9 +2,9 @@ import { memo } from "react";
 import Post from "./Post/Post";
 import s from "./PostsList.module.scss"
 
-const PostsList = ({ postsState, title }) => {
+const PostsList = ({ postsState, title, removePost }) => {
 	const posts = postsState.map((p, index) => {
-		return <Post title={p.title} number={index} key={p.id} body={p.body} />
+		return <Post removePost={removePost} title={p.title} number={index} key={p.id} id={p.id} body={p.body} />
 	})
 	
 	return (

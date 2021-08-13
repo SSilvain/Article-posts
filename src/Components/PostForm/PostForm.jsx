@@ -5,17 +5,20 @@ import s from "./PostForm.module.scss";
 
 const PostForm = ({ addPost }) => {
 
-	let [post, setPost] = useState({ title: "", body: "" });
+	let [post, setPost] = useState({});
 	const onChangeTitle = (e) => {
 		setPost({ ...post, title: e.target.value });
+		
 	};
 	const onChangeBody = (e) => {
 		setPost({ ...post, body: e.target.value });
 	};
 	const createPost = (e) => {
 		e.preventDefault();
-		setPost({ ...post, id: Date.now() });
-		addPost(post);
+		const tempPost = { ...post, id: Date.now() }
+		// setPost({ ...post, id: 777});
+		// console.log(post);
+		addPost(tempPost);
 		setPost({ title: "", body: "" });
 	};
 	return (
@@ -30,7 +33,7 @@ const PostForm = ({ addPost }) => {
 				value={post.body}
 				placeholder="body"
 			/>
-			<UIButton createPost={createPost}>Send Post</UIButton>
+			<UIButton onClick={createPost}>Send Post</UIButton>
 		</form>
 	)
 }

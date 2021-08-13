@@ -1,9 +1,9 @@
 import s from "./UIButton.module.scss"
 
-const Button = ({ createPost, children, ...props }) => {
+const UIButton = ({ children, ...props }) => {
 	return (
-		<button onClick={createPost} className={s.button} {...props}>{children}</button>
+		<button className={s.button} {...props}>{children}</button>
 	)
 }
 
-export default Button;
+export default UIButton;
