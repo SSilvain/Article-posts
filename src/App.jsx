@@ -15,14 +15,11 @@ function App() {
 	const [postsState, setPostsState] = useState(initialPosts);
 	const [sortingValue, setSortingValue] = useState("")
 
-	
-	const onChangeSortingValue = (value)=>{
+
+	const onChangeSortingValue = (value) => {
 		setSortingValue(value);
 		setPostsState([...postsState].sort((a, b) => a[value].localeCompare(b[value])))
-		// exactSortingPosts();
-	}
-	const exactSortingPosts = () => {
-		
+
 	}
 	const removePost = (key) => {
 		setPostsState(postsState.filter((post) => post.id !== key));
@@ -36,7 +33,7 @@ function App() {
 		<div>
 			<PostForm addPost={addPostState} />
 			<UISelect
-				value={sortingValue}
+				value={sortingValue || "sorting of"}
 				onChangeSortingValue={onChangeSortingValue}
 				defaultValue="sorting of"
 				options={[
