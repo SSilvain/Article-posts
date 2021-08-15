@@ -14,11 +14,18 @@ function App() {
 	]
 	const [postsState, setPostsState] = useState(initialPosts);
 	const [sortingValue, setSortingValue] = useState("")
-
+	const getSortedPost = () => {
+		if (sortingValue) {
+			 setPostsState([...postsState].sort((a, b) => (a[sortingValue] + "").localeCompare((b[sortingValue] + ""))));
+		} else {
+			return postsState;
+		}
+	}
+	const sortedPost = getSortedPost();
 
 	const onChangeSortingValue = (value) => {
 		setSortingValue(value);
-		setPostsState([...postsState].sort((a, b) => (a[value]+"").localeCompare((b[value]+""))))
+		setPostsState()
 
 	}
 	const removePost = (key) => {
@@ -39,13 +46,13 @@ function App() {
 				options={[
 					{ value: "title", name: "title" },
 					{ value: "body", name: "body" },
-					{value: "id", name: "id"}
+					{ value: "id", name: "id" }
 				]}
 			/>
 
 			<PostsList
 				removePost={removePost}
-				postsState={postsState}
+				postsState={sortedPost}
 				title="Posts about traveling"
 			/>
 
