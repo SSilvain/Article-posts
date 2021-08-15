@@ -1,8 +1,9 @@
 import "./App.module.scss";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import PostsList from "./Components/PostsList/PostsList";
 import PostForm from "./Components/PostForm/PostForm";
 import UISelect from "./Components/UI/UISelect/UISelect"
+import UIInput from "./Components/UI/UIInput/UIInput";
 
 function App() {
 	let initialPosts = [
@@ -13,19 +14,32 @@ function App() {
 		{ title: "Dorem, ipsum dolor.", body: "Forem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis eos labore, assumenda, atque obcaecati aut quia eligendi laudantium architecto veritatis eveniet? Doloribus!", id: 4 },
 	]
 	const [postsState, setPostsState] = useState(initialPosts);
-	const [sortingValue, setSortingValue] = useState("")
+	const [sortingValue, setSortingValue] = useState("");
+	const [serchQuery, setSerchQuery] = useState("");
+
 	const getSortedPost = () => {
+		console.log("work")
 		if (sortingValue) {
-			 setPostsState([...postsState].sort((a, b) => (a[sortingValue] + "").localeCompare((b[sortingValue] + ""))));
+			return [...postsState].sort((a, b) => (a[sortingValue] + "").localeCompare((b[sortingValue] + "")));
 		} else {
 			return postsState;
 		}
 	}
-	const sortedPost = getSortedPost();
+	const sortedPost = useMemo(
+		() => {
+			if (sortingValue) {
+				return [...postsState].sort((a, b) => (a[sortingValue] + "").localeCompare((b[sortingValue] + "")));
+			} else {
+				return postsState;
+			}
+		}, [sortingValue, postsState]);
+	
+	const searchInSortedPost = useMemo(() => {
+		return sortedPost.filter(post=>post.title.toLowerCase().includes(serchQuery.toLocaleLowerCase()))
+	},[serchQuery, sortedPost])
 
 	const onChangeSortingValue = (value) => {
 		setSortingValue(value);
-		setPostsState()
 
 	}
 	const removePost = (key) => {
@@ -39,6 +53,11 @@ function App() {
 	return (
 		<div>
 			<PostForm addPost={addPostState} />
+			<UIInput
+				placeholder="search..."
+				value={serchQuery}
+				onChange={e => { setSerchQuery(e.target.value) }}
+			/>
 			<UISelect
 				value={sortingValue || "sorting of"}
 				onChangeSortingValue={onChangeSortingValue}
@@ -52,7 +71,7 @@ function App() {
 
 			<PostsList
 				removePost={removePost}
-				postsState={sortedPost}
+				searchInSortedPost={searchInSortedPost}
 				title="Posts about traveling"
 			/>
 
